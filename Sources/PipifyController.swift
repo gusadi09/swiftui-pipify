@@ -62,7 +62,7 @@ public final class PipifyController: NSObject, ObservableObject, AVPictureInPict
         _enabled = isPresented
         super.init()
         // the audio session must be setup before the pip controller is created
-        Self.setupAudioSession()
+//        Self.setupAudioSession()
         setupController()
     }
     
@@ -79,7 +79,9 @@ public final class PipifyController: NSObject, ObservableObject, AVPictureInPict
         
         // Combined with a certain time range this makes it so the skip buttons are not visible / interactable.
         // if an `onSkip` closure is provied then we don't do this
-        pipController?.requiresLinearPlayback = onSkip == nil
+        pipController?.requiresLinearPlayback = false
+        pipController?.canStartPictureInPictureAutomaticallyFromInline = true
+        pipController?.setValue(2, forKey: "controlsStyle")
         
         pipController?.delegate = self
     }
