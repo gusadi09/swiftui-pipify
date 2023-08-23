@@ -13,6 +13,7 @@ public extension View {
     ///   - isPresented: A binding to a boolean which determines when the Picture in Picture controller should be presented.
     ///   - content: A closure which returns the view you wish to present in the Picture in Picture controller.
     @warn_unqualified_access
+    @available(iOS 16.0, *)
     func pipify<PipView: View>(
         isPresented: Binding<Bool>,
         content: @escaping () -> PipView
@@ -30,6 +31,7 @@ public extension View {
     /// - Parameters:
     ///   - isPresented: A binding to a boolean which determines when the Picture in Picture controller should be presented.
     @warn_unqualified_access
+    @available(iOS 16.0, *)
     func pipify(
         isPresented: Binding<Bool>
     ) -> some View {
@@ -49,6 +51,7 @@ struct PipifyLibrary: LibraryContentProvider {
     @State var isPresented: Bool = false
     
     @LibraryContentBuilder
+    @available(iOS 16.0, *)
     func modifiers(base: any View) -> [LibraryItem] {
         LibraryItem(base.pipify(isPresented: $isPresented), title: "Pipify Embedded View")
         LibraryItem(base.pipify(isPresented: $isPresented) { Text("Hello, world!") }, title: "Pipify External View")

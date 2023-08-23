@@ -86,6 +86,7 @@ public final class PipifyController: NSObject, ObservableObject, AVPictureInPict
         pipController?.delegate = self
     }
     
+    @available(iOS 16.0, *)
     @MainActor func setView(_ view: some View, maximumUpdatesPerSecond: Double = 30) {
         let modifiedView = view.environmentObject(self)
         let renderer = ImageRenderer(content: modifiedView)
@@ -105,6 +106,7 @@ public final class PipifyController: NSObject, ObservableObject, AVPictureInPict
     
     // MARK: - Rendering
     
+    @available(iOS 16.0, *)
     private func render(view: some View, using renderer: ImageRenderer<some View>) {
         Task {
             do {
